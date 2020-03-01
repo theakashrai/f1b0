@@ -6,7 +6,7 @@ import java.sql.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-@WebServlet("/admin")
+@WebServlet("/adminx")
 public class Admin extends HttpServlet{
 	public void service(HttpServletRequest req,HttpServletResponse res)
 	throws ServletException,IOException{

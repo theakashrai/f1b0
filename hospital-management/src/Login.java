@@ -12,25 +12,21 @@ import javax.servlet.http.HttpSession;
 public class Login extends HttpServlet {
 	public void service(HttpServletRequest req, HttpServletResponse res)
     throws IOException, ServletException{
-		res.setContentType("text/html");
-		PrintWriter out=res.getWriter();
-		out.println("<form action='login' method='post'>");
-		out.println("<label> ID </label>");
-		out.println("<input type='text' name='id'>");
-		out.println("<label> Password </label>");
-		out.println("<input type='password' name='pass'>");
-		out.println("<input type='submit' name='Submit'>");
-		out.println("</form>");
+		//index.html -> login.html -> yaha pe aayega
+		
+	
 		String id=req.getParameter("id");
 		String p=req.getParameter("pass");
-		if(id.equals("admin123@gmail.com")&&p.equals("admin123")) {
+		if (id.equals("admin123@gmail.com")&&p.equals("admin123")) {
 			HttpSession session=req.getSession();
 			session.setMaxInactiveInterval(20);
 			session.setAttribute("id", id);
 			res.sendRedirect("admin");
 		}
 			else {
-				out.println("you have entered wrong id or password");
+				//TODO negative scenario 
+				req.setAttribute("errorMsg", "Wrong username and password");
+				req.getRequestDispatcher("login.jsp").forward(req, res);
 			}
 		}
 	}

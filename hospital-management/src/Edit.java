@@ -12,6 +12,7 @@ public class Edit extends HttpServlet {
 	public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		res.setContentType("text/html");
 		PrintWriter out = res.getWriter();
+		
 		String id = req.getParameter("PatientID");
 		try {
 			// load Driver class
@@ -22,7 +23,19 @@ public class Edit extends HttpServlet {
 			Statement stmt = con.createStatement();
 			String sql = "select * from patients where PatientID=" + id;
 			ResultSet rs = stmt.executeQuery(sql);
-			out.println("<body style='background-image: url(header-banner.jpg); height:700px ;width:700px;'>");
+			Patient patient=new Patient();
+			while(rs.next()){
+				patient.setId(rs.getInt(1));
+				patient.setName(rs.getString(2));
+				patient.setMobileNumber(rs.getLong(3));
+				patient.setRoomNo(rs.getInt(4));
+				patient.setDisease(rs.getString(5));
+				patient.setDateOfAdmission(rs.getString(6));
+				patient.setDateOfDischarge(rs.getString(7));
+			}
+			req.setAttribute("patient", patient);
+			
+/*			out.println("<body style='background-image: url(header-banner.jpg); height:700px ;width:700px;'>");
 			out.println("<form action='update' method='post'>");
 			out.println("<table border='1'>");
 			out.println(
@@ -41,7 +54,7 @@ public class Edit extends HttpServlet {
 				out.println("</table>");
 				out.println("</form>");
 				out.println("</body>");
-			}
+			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -13,6 +13,7 @@ public class Delete extends HttpServlet{
 		res.setContentType("text/html");
 		PrintWriter out=res.getWriter();
 		String id=req.getParameter("PatientID");
+		
 		try {
 			//load Driver class
 			Class.forName("com.mysql.jdbc.Driver");

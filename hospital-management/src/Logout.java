@@ -20,5 +20,6 @@ public class Logout extends HttpServlet {
 		RequestDispatcher rd=req.getRequestDispatcher("index.html");
 		rd.include(req, res);
 		//res.sendRedirect("admin");
+	
 	}
 }

@@ -31,40 +31,36 @@
 	<br>
 	<div class="container-fluid">
 		<div class="row">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Patient id</th>
-						<th>Name</th>
-						<th>Mobile Number</th>
-						<th>Room number</th>
-						<th>Disease</th>
-						<th>Date of admission</th>
-						<th>Date of discharge</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-
-					<c:forEach var="row" items="${patientList}">
-						<tr>
-							<td><c:out value="${row.id}" /></td>
-							<td><c:out value="${row.name}" /></td>
-							<td><c:out value="${row.mobileNumber}" /></td>
-							<td><c:out value="${row.roomNo}" /></td>
-							<td><c:out value="${row.disease}" /></td>
-							<td><c:out value="${row.dateOfAdmission}" /></td>
-							<td><c:out value="${row.dateOfDischarge}" /></td>
-							<td><a
-								href='delete?PatientID="<c:out value="${row.id}" />"'>DELETE</a></td>
-							<td><a href='edit?PatientID="<c:out value="${row.id}" />"'>EDIT</a></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+			<c:if test="${not empty errorMsg}">
+				<div class="col-sm-12 alert alert-warning text-center">
+					<c:out value="${errorMsg}" />
+				</div>
+			</c:if>
+			<div class="col-sm-3"></div>
+			<div class="card col-sm-6">
+				<img class="card-img-top" src="header-banner.jpg"
+					alt="Patient information">
+				<div class="card-header">Admin Login</div>
+				<div class="card-body">
+					<form action="login" method="post">
+						<div class="form-group">
+							<label for="id">ID:</label> <input type="text" name="id"
+								class="form-control" placeholder="Enter id" id="id">
+						</div>
+						<div class="form-group">
+							<label for="pass">Password:</label> <input type="password"
+								name="pass" class="form-control" placeholder="Enter password"
+								id="pass">
+						</div>
+						<button type="submit" class="btn btn-primary" value="LOGIN">Submit</button>
+					</form>
+				</div>
+				<div class="card-footer">
+				
+				</div>
+			</div>
+			<div class="col-sm-3"></div>
 		</div>
 	</div>
-
-
 </body>
 </html>
