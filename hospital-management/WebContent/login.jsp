@@ -23,7 +23,7 @@
 		<ul class="navbar-nav">
 			<li class="nav-item"><a class="nav-link" href="index.html">Home</a>
 			</li>
-			<li class="nav-item"><a class="nav-link" href="index2.html">Patient
+			<li class="nav-item"><a class="nav-link" href="detail-info.html">Patient
 					Management</a></li>
 			<li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
 		</ul>

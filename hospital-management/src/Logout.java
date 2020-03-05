@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,15 +10,17 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/logout")
 public class Logout extends HttpServlet {
-	public void service(HttpServletRequest req, HttpServletResponse res)
-    throws IOException, ServletException{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7190956441666237829L;
+
+	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		res.setContentType("text/html");
-		PrintWriter out=res.getWriter();
-		HttpSession session=req.getSession();
-        session.invalidate();
-		RequestDispatcher rd=req.getRequestDispatcher("index.html");
+		HttpSession session = req.getSession();
+		session.invalidate();
+		RequestDispatcher rd = req.getRequestDispatcher("index.html");
 		rd.include(req, res);
-		//res.sendRedirect("admin");
-	
+
 	}
 }

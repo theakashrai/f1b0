@@ -1,18 +1,31 @@
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/edit")
 public class Edit extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 542185777570081290L;
+
 	public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		res.setContentType("text/html");
-		PrintWriter out = res.getWriter();
-		
+
+		HttpSession session = req.getSession();
+		String idx = (String) session.getAttribute("id");
+		if (idx == null) {
+			req.setAttribute("errorMsg", "You must login first!!");
+			req.getRequestDispatcher("login.jsp").forward(req, res);
+		}
 		String id = req.getParameter("PatientID");
 		try {
 			// load Driver class
@@ -23,8 +36,8 @@ public class Edit extends HttpServlet {
 			Statement stmt = con.createStatement();
 			String sql = "select * from patients where PatientID=" + id;
 			ResultSet rs = stmt.executeQuery(sql);
-			Patient patient=new Patient();
-			while(rs.next()){
+			Patient patient = new Patient();
+			while (rs.next()) {
 				patient.setId(rs.getInt(1));
 				patient.setName(rs.getString(2));
 				patient.setMobileNumber(rs.getLong(3));
@@ -34,27 +47,7 @@ public class Edit extends HttpServlet {
 				patient.setDateOfDischarge(rs.getString(7));
 			}
 			req.setAttribute("patient", patient);
-			
-/*			out.println("<body style='background-image: url(header-banner.jpg); height:700px ;width:700px;'>");
-			out.println("<form action='update' method='post'>");
-			out.println("<table border='1'>");
-			out.println(
-					"<tr><th>PatientID</th><th>Name</th><th>Mobile</th><th>RoomNo</th><th>Disease</th><th>Date_of_admit</th><th>Date_of_discharge</th><th colsapn='2'>ACTION</th></tr>");
-			while (rs.next()) {
-				out.println("<tr>");
-				out.println("<td><input type='number' name='id' value='" + rs.getInt(1) + "'></td>");
-				out.println("<td><input type='text' name='name' value='" + rs.getString(2) + "'></td>");
-				out.println("<td><input type='number' name='mob' value='" + rs.getLong(3) + "'></td>");
-				out.println("<td><input type='number' name='rom' value='" + rs.getInt(4) + "'></td>");
-				out.println("<td><input type='text' name='dis' value='" + rs.getString(5) + "'></td>");
-				out.println("<td><input type='date' name='doa' value='" + rs.getDate(6) + "'></td>");
-				out.println("<td><input type='date' name='dod' value='" + rs.getDate(7) + "'></td>");
-				out.println("<td><input type='submit'value='update'></td>");
-				out.println("</tr>");
-				out.println("</table>");
-				out.println("</form>");
-				out.println("</body>");
-			}*/
+			req.getRequestDispatcher("edit.jsp").forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

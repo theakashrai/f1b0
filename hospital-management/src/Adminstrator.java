@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -16,6 +15,11 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/admin")
 public class Adminstrator extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1966276265001457295L;
+
 	public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String id = (String) session.getAttribute("id");

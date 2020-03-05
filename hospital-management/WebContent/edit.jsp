@@ -23,59 +23,60 @@
 		<ul class="navbar-nav">
 			<li class="nav-item"><a class="nav-link" href="index.html">Home</a>
 			</li>
-			<li class="nav-item"><a class="nav-link" href="index2.html">Patient
+			<li class="nav-item"><a class="nav-link" href="detail-info.html">Patient
 					Management</a></li>
+			<li class="nav-item"><a class="nav-link" href="admin">Admin Management</a></li>		
 			<li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
 		</ul>
 	</nav>
 	<br>
 	<div class="container-fluid">
 		<div class="row">
-					<div class="col-sm-3"></div>
-					<div class="card col-sm-6">
-						<img class="card-img-top" src="header-banner.jpg"
-							alt="Patient information">
-						<div class="card-body">
-							<form action="#" method="post">
-								<div class="form-group">
-									<label for="name">Name:</label> <input type="text" name="name"
-										class="form-control" placeholder="Enter name" id="name"
-										value="<c:out value="${patient.name}"/>" disabled>
-								</div>
-								<div class="form-group">
-									<label for="mob">Mobile:</label> <input type="number"
-										name="mob" class="form-control"
-										placeholder="Enter mobile number" id="mob"
-										value="<c:out value="${patient.mobileNumber}"/>" disabled>
-								</div>
-								<div class="form-group">
-									<label for="rom">Room No:</label> <input type="number"
-										name="rom" class="form-control"
-										placeholder="Enter room number" id="rom"
-										value="<c:out value="${patient.roomNo}"/>" disabled>
-								</div>
-								<div class="form-group">
-									<label for="dis">Disease:</label> <input type="text" name="dis"
-										class="form-control" placeholder="Enter Disease" id="dis"
-										value="<c:out value="${patient.disease}"/>" disabled>
-								</div>
-								<div class="form-group">
-									<label for="doa">Date of admission:</label> <input type="date"
-										name="doa" class="form-control"
-										placeholder="Enter Date of admission" id="doa"
-										value="<c:out value="${patient.dateOfAdmission}"/>" disabled>
-								</div>
-								<div class="form-group">
-									<label for="doa">Date of discharge:</label> <input type="date"
-										name="dod" class="form-control"
-										placeholder="Enter Date of discharge" id="dod"
-										value="<c:out value="${patient.dateOfDischarge}"/>" disabled>
-								</div>
-						<button type="submit" class="btn btn-primary" value="Update">Update</button>
-							</form>
+			<div class="col-sm-3"></div>
+			<div class="card col-sm-6">
+				<img class="card-img-top" src="header-banner.jpg"
+					alt="Patient information">
+				<div class="card-body">
+					<form action="update" method="post">
+						<input type="hidden" name="id" id="id"
+							value="<c:out value="${patient.id}"/>">
+						<div class="form-group">
+							<label for="name">Name:</label> <input type="text" name="name"
+								class="form-control" placeholder="Enter name" id="name"
+								value="<c:out value="${patient.name}"/>">
 						</div>
-					</div>
-					<div class="col-sm-3"></div>
+						<div class="form-group">
+							<label for="mob">Mobile:</label> <input type="number" name="mob"
+								class="form-control" placeholder="Enter mobile number" id="mob"
+								value="<c:out value="${patient.mobileNumber}"/>">
+						</div>
+						<div class="form-group">
+							<label for="rom">Room No:</label> <input type="number" name="rom"
+								class="form-control" placeholder="Enter room number" id="rom"
+								value="<c:out value="${patient.roomNo}"/>">
+						</div>
+						<div class="form-group">
+							<label for="dis">Disease:</label> <input type="text" name="dis"
+								class="form-control" placeholder="Enter Disease" id="dis"
+								value="<c:out value="${patient.disease}"/>">
+						</div>
+						<div class="form-group">
+							<label for="doa">Date of admission:</label> <input type="date"
+								name="doa" class="form-control"
+								placeholder="Enter Date of admission" id="doa"
+								value="<c:out value="${patient.dateOfAdmission}"/>">
+						</div>
+						<div class="form-group">
+							<label for="doa">Date of discharge:</label> <input type="date"
+								name="dod" class="form-control"
+								placeholder="Enter Date of discharge" id="dod"
+								value="<c:out value="${patient.dateOfDischarge}"/>">
+						</div>
+						<button type="submit" class="btn btn-primary" value="Update">Update</button>
+					</form>
+				</div>
+			</div>
+			<div class="col-sm-3"></div>
 		</div>
 	</div>
 </body>

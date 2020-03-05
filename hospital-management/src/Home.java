@@ -1,9 +1,15 @@
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.*;
-import java.sql.*;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/home")
 public class Home extends HttpServlet {
@@ -38,13 +44,12 @@ public class Home extends HttpServlet {
 					patient.setDateOfDischarge(rs.getString(7));
 				}
 				req.setAttribute("patient", patient);
-				
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
-			req.setAttribute("errorMsg","Sorry! You have entered wrong name or patientID");
+			req.setAttribute("errorMsg", "Sorry! You have entered wrong name or patientID");
 		}
 		req.getRequestDispatcher("patient_info.jsp").forward(req, res);
 
